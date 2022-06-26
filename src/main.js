@@ -30,6 +30,7 @@ let config = {
     type: Phaser.CANVAS,
     width: 800,
     height: 640,
+    autoCenter: true,
     physics: {
         default: 'arcade',
         arcade: {
@@ -37,7 +38,8 @@ let config = {
             debug: false
         }
     },
-    scene: [Menu, Tutorial, Instructions, Credit, Hub, World1, World2, World3]
+    scene: [Menu, Tutorial, Instructions, Credit, Hub, World1, World2, World3, Boss]
+    //scene: Boss
 }
 let game = new Phaser.Game(config);
 

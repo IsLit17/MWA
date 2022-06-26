@@ -7,7 +7,7 @@ class World1 extends Phaser.Scene {
         // load audio
         this.load.audio('Jump_noise', './assets/Jump.wav');
         this.load.audio('Game_over', './assets/Game_Over.wav');
-        this.load.audio('Low_C_Chord', './assets/Low_C_Chord.wav');
+        //this.load.audio('Low_C_Chord', './assets/Low_C_Chord.wav');
         this.load.audio('World_1', './assets/World_1.wav');
         this.load.audio('Take_Damage', './assets/Damage.wav');
 
@@ -31,6 +31,7 @@ class World1 extends Phaser.Scene {
 
         // base settings for this scene
         gameOver = false;
+        this.isPaused = false;
         this.weapon;
         this.length = 100*32;
         this.height = 100*32;
@@ -202,7 +203,7 @@ class World1 extends Phaser.Scene {
 
         // add magazine text
         this.magazineText = this.add.text(350, 20, this.player.magazine + "bullets", ammoConfig).setScrollFactor(0);
-        this.resetText = this.add.text(20, 20, 'Press (P) to Restart', ammoConfig).setScrollFactor(0);
+        this.resetText = this.add.text(20, 20, 'Press (P) to Pause', ammoConfig).setScrollFactor(0);
         this.gameoverText = this.add.text(350, 300, "GAME OVER", scoreConfig).setScrollFactor(0).setVisible(false);
         this.gameoverText2 = this.add.text(120, 350, 'Press (P) to Restart or (M) to return', scoreConfig).setScrollFactor(0).setVisible(false);
 
