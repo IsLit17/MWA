@@ -65,6 +65,18 @@ class World3 extends Phaser.Scene {
         this.platforms = map.createLayer('Platforms', tileSet, 0, 96); // platform layer
         this.platforms.setCollisionByExclusion(-1, true);
 
+        // health pickup
+        this.hPickUp = map.createFromObjects("Health", {
+            name: "",
+            key: "tile3_sheet",
+            frame: 13
+        });
+        for (let i = 0; i < this.hPickUp.length; i++) {
+            this.hPickUp[i].y += 96;
+        }
+        this.physics.world.enable(this.hPickUp, Phaser.Physics.Arcade.STATIC_BODY);
+        this.hGroup = this.add.group(this.hPickUp);
+
         // player
         let playerPos  = map.findObject("Enemies", obj => obj.name === "player");
         this.player = new Player(this, playerPos.x, playerPos.y, 'player', 0, keyA, keyD, keyW, keySPACE, keyLEFT, keyRIGHT, this.length, this.height).setOrigin(0,0);
@@ -119,16 +131,16 @@ class World3 extends Phaser.Scene {
         });
 
         // set up health pickups
-        this.hPickUp = map.createFromObjects("Health", {
-            name: "",
-            key: "tile3_sheet",
-            frame: 13
-        });
-        for (let i = 0; i < this.hPickUp.length; i++) {
-            this.hPickUp[i].y += 96;
-        }
-        this.physics.world.enable(this.hPickUp, Phaser.Physics.Arcade.STATIC_BODY);
-        this.hGroup = this.add.group(this.hPickUp);
+        // this.hPickUp = map.createFromObjects("Health", {
+        //     name: "",
+        //     key: "tile3_sheet",
+        //     frame: 13
+        // });
+        // for (let i = 0; i < this.hPickUp.length; i++) {
+        //     this.hPickUp[i].y += 96;
+        // }
+        // this.physics.world.enable(this.hPickUp, Phaser.Physics.Arcade.STATIC_BODY);
+        // this.hGroup = this.add.group(this.hPickUp);
         this.hSFXManager = this.add.particles('tile3_sheet', 6);
         this.hSFX = this.hSFXManager.createEmitter({
             follow: this.player,
