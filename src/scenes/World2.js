@@ -137,9 +137,11 @@ class World2 extends Phaser.Scene {
             on: false   // do not immediately start, will trigger in collision
         });
         this.physics.add.overlap(this.player, this.hGroup, (obj1, obj2) => {
-            obj2.destroy(); // remove coin on overlap
-            this.hSFX.explode();
-            this.gainHealth(); // add 1 to player health
+            if (obj1.life < 3) {
+                obj2.destroy(); // remove coin on overlap
+                this.hSFX.explode();
+                this.gainHealth();
+            }
         }, null, this);
 
         // portal
