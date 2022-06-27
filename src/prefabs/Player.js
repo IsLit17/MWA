@@ -118,6 +118,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         else{
             bullet = new Bullet(this.scene, this.x + 82,  this.y + 60, 'bullet' + chords[this.bullet], 0, dir, chords[this.bullet]).setOrigin(0);
         }
+        let bulletFX = this.scene.sound.add('gunshot', {volume: 0.60});
+        bulletFX.play();
         this.scene.physics.add.overlap(bullet, enemy, (obj1, obj2) => {
             if(obj2.shooterEvent)
                 obj2.shooterEvent.destroy();
@@ -125,11 +127,17 @@ class Player extends Phaser.Physics.Arcade.Sprite {
                 obj1.alpha = 0;
                 obj2.alpha = 0;
                 let boom = this.scene.add.sprite(obj2.x, obj2.y, 'explosion').setOrigin(0, 0);
+                let boomFX = this.scene.sound.add('explosion', {volume: 0.80});
+                boomFX.play();
                 obj2.destroy();
                 boom.anims.play('explode');
                 boom.on('animationcomplete', () => {
                     boom.destroy();
+                    boomFX.destroy();
                 });
+            } else {
+                let dudFX = this.scene.sound.add('ineffective', {volume: 0.80});
+                dudFX.play();
             }
             obj1.destroy();
         })

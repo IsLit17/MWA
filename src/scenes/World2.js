@@ -25,10 +25,14 @@ class World2 extends Phaser.Scene {
     }
 
     create() {
-        // World 1 Music
+        // World 2 Music
         this.World_2_music = this.sound.add('World_2', {volume: 0.50});
         this.World_2_music.play();
         this.World_2_music.loop = true;
+
+        // SFX
+        this.damageFX = this.sound.add('Take_Damage', {volume: 0.80});
+        this.healthFX = this.sound.add('health', {volume: 0.80});
 
         // base settings for this scene
         this.complete = false;
@@ -114,6 +118,7 @@ class World2 extends Phaser.Scene {
             this.overlap2.active = false;
             this.player.hitted = true;
             this.player.shadow = true;
+            this.damageFX.play();
             this.looseHealth();
                 this.timedEvent = this.time.addEvent({
                     delay: 700,
@@ -129,16 +134,6 @@ class World2 extends Phaser.Scene {
         });
 
         // set up health pickups
-        // this.hPickUp = map.createFromObjects("Health", {
-        //     name: "",
-        //     key: "tile2_sheet",
-        //     frame: 13
-        // });
-        // for (let i = 0; i < this.hPickUp.length; i++) {
-        //     this.hPickUp[i].y += 96;
-        // }
-        // this.physics.world.enable(this.hPickUp, Phaser.Physics.Arcade.STATIC_BODY);
-        // this.hGroup = this.add.group(this.hPickUp);
         this.hSFXManager = this.add.particles('tile2_sheet', 6);
         this.hSFX = this.hSFXManager.createEmitter({
             follow: this.player,
@@ -153,6 +148,7 @@ class World2 extends Phaser.Scene {
                 obj2.destroy(); // remove coin on overlap
                 this.hSFX.explode();
                 this.gainHealth();
+                this.healthFX.play();
             }
         }, null, this);
 
@@ -203,6 +199,7 @@ class World2 extends Phaser.Scene {
             this.overlap2.active = false;
             this.player.hitted = true;
             this.looseHealth();
+            this.damageFX.play();
             this.player.shadow = true;
                 this.timedEvent = this.time.addEvent({
                     delay: 700,
@@ -234,6 +231,7 @@ class World2 extends Phaser.Scene {
             this.overlap.active = false;
             this.player.hitted = true;
             this.looseHealth();
+            this.damageFX.play();
             this.player.shadow = true;
                 this.timedEvent = this.time.addEvent({
                     delay: 700,
