@@ -12,6 +12,7 @@ class World2 extends Phaser.Scene {
 
         // load images, spritesheets, and tilemaps
         this.load.image('tiles2', './assets/tilesheet2.png');
+        this.load.image('bush', './assets/bush.png');
         this.load.spritesheet("tile2_sheet", "./assets/tilesheet2.png", {
             frameWidth: 32,
             frameHeight: 32
@@ -63,6 +64,17 @@ class World2 extends Phaser.Scene {
         const map = this.make.tilemap({ key: 'map2' });
         const tileSet = map.addTilesetImage('tile_sheet_2', 'tiles2');
         const backgroundLayer = map.createLayer("Background", tileSet, 0, 96).setScrollFactor(0.25); // background layer
+
+        // add background bushes
+        this.bushes = [];
+        let bushObj = map.filterObjects("Bush", obj => obj.name === "");
+        let index_bush = 0;
+        bushObj.map((element) => {
+            this.bushes[index_bush] = new Backdrop(this, element.x, element.y, 'bush', 0, 5, element.x).setOrigin(0,0);
+            index_bush += 1;
+        });
+
+        // platforms
         const groundLayer = map.createLayer("Ground", tileSet, 0, 96); // background layer
         this.platforms = map.createLayer('Platforms', tileSet, 0, 96);
         this.platforms.setCollisionByExclusion(-1, true);
@@ -252,6 +264,9 @@ class World2 extends Phaser.Scene {
             this.UI.update(this.player);
             for (let i = 0; i < this.enemy.length; i++) {
                 this.enemy[i].update(this.player, this.platforms);
+            }
+            for (let i = 0; i < this.bushes.length; i++) {
+                this.bushes[i].update();
             }
             this.checkHealth();
             this.magazineText.text = this.player.magazine + " bullets";

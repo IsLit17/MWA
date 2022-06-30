@@ -13,6 +13,7 @@ class World3 extends Phaser.Scene {
 
         // load images, spritesheets, and tilemaps
         this.load.image('tiles3', './assets/tilesheet3.png');
+        this.load.image('fireball', './assets/fireball.png');
         this.load.spritesheet("tile3_sheet", "./assets/tilesheet3.png", {
             frameWidth: 32,
             frameHeight: 32
@@ -64,6 +65,17 @@ class World3 extends Phaser.Scene {
         const map = this.make.tilemap({ key: 'map3' });
         const tileSet = map.addTilesetImage('tile_sheet_3', 'tiles3');
         const backgroundLayer = map.createLayer("Background", tileSet, 0, 96).setScrollFactor(0.25); // background layer
+
+        // add background bushes
+        this.fireballs = [];
+        let fireObj = map.filterObjects("Fireball", obj => obj.name === "");
+        let index_fire = 0;
+        fireObj.map((element) => {
+            this.fireballs[index_fire] = new Backdrop(this, element.x, element.y, 'fireball', 0, 5, element.x).setOrigin(0,0);
+            index_fire += 1;
+        });
+
+        // platforms
         const groundLayer = map.createLayer("Ground", tileSet, 0, 96); // background layer
         this.platforms = map.createLayer('Platforms', tileSet, 0, 96); // platform layer
         this.platforms.setCollisionByExclusion(-1, true);
@@ -280,6 +292,9 @@ class World3 extends Phaser.Scene {
             this.UI.update(this.player);
             for (let i = 0; i < this.enemy.length; i++) {
                 this.enemy[i].update(this.player, this.platforms);
+            }
+            for (let i = 0; i < this.fireballs.length; i++) {
+                this.fireballs[i].update();
             }
             this.checkHealth();
             this.magazineText.text = this.player.magazine + " bullets";
