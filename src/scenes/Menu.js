@@ -6,12 +6,13 @@ class Menu extends Phaser.Scene {
     preload() {
         
         // load audio
-        this.load.audio('menu_music', './assets/Menu_Music.wav');
+        this.load.audio('menu_music', './assets/Menu_Music.m4a');
         this.load.audio('gunshot', './assets/gunshot.wav');
         this.load.audio('explosion', './assets/explosion.wav');
         this.load.audio('health', './assets/healthIncrease.wav');
         this.load.audio('ineffective', './assets/not_effective.wav');
         this.load.audio('damage', './assets/Damage.wav');
+        this.load.audio('Jump_noise', './assets/Jump.wav');
         this.load.spritesheet('player', './assets/player.png', {frameWidth: 64, frameHeight: 128, startFrame: 0, endFrame: 3});
         this.load.spritesheet('player_idle', './assets/playerIdle2.png', {frameWidth: 108, frameHeight: 128, startFrame: 0, endFrame: 4});
         this.load.spritesheet('player_walk', './assets/playerWalk3.png', {frameWidth: 108, frameHeight: 128, startFrame: 0, endFrame: 2});
@@ -43,7 +44,7 @@ class Menu extends Phaser.Scene {
 
     create() {
 
-        this.menu_music = this.sound.add('menu_music', {volume: 0.50});
+        this.menu_music = this.sound.add('menu_music', {volume: 0.20});
         this.menu_music.play();
         this.menu_music.loop = true;
 

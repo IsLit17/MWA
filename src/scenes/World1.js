@@ -5,7 +5,6 @@ class World1 extends Phaser.Scene {
 
     preload() {
         // load audio
-        this.load.audio('Jump_noise', './assets/Jump.wav');
         this.load.audio('Game_over', './assets/Game_Over.wav');
         //this.load.audio('Low_C_Chord', './assets/Low_C_Chord.wav');
         this.load.audio('World_1', './assets/World_1.wav');
@@ -14,6 +13,7 @@ class World1 extends Phaser.Scene {
 
         // load images, spritesheets, and tilemaps
         this.load.image('tiles1', './assets/tilesheet1.png');
+        this.load.image('rocket', './assets/rocket.png');
         this.load.spritesheet("tile1_sheet", "./assets/tilesheet1.png", {
             frameWidth: 32,
             frameHeight: 32
@@ -58,11 +58,21 @@ class World1 extends Phaser.Scene {
         keyT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.T);
         keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
-
         // map
         const map = this.make.tilemap({ key: 'map1' });
         const tileSet = map.addTilesetImage('tile_sheet_1', 'tiles1');
         const backgroundLayer = map.createLayer("Background", tileSet, 0, 96).setScrollFactor(0.25); // background layer
+
+        // add background rockets
+        this.rockets = [];
+        let rocketObj = map.filterObjects("Rocket", obj => obj.name === "");
+        let index_rocket = 0;
+        rocketObj.map((element) => {
+            this.rockets[index_rocket] = new Backdrop(this, element.x, element.y, 'rocket', 0, 5, element.x).setOrigin(0,0);
+            index_rocket += 1;
+        });
+
+        // platforms
         const groundLayer = map.createLayer("Ground", tileSet, 0, 96); // background layer
         this.platforms = map.createLayer('Platforms', tileSet, 0, 96);
         this.platforms.setCollisionByExclusion(-1, true);
@@ -229,7 +239,6 @@ class World1 extends Phaser.Scene {
             this.overlap2.active = false;
             this.overlap.active = false;
             this.player.hitted = true;
-            //this.player.life -= 1;
             this.looseHealth();
             this.damageFX.play();
             this.player.shadow = true;
@@ -253,6 +262,9 @@ class World1 extends Phaser.Scene {
             this.UI.update(this.player);
             for (let i = 0; i < this.enemy.length; i++) {
                 this.enemy[i].update(this.player, this.platforms);
+            }
+            for (let i = 0; i < this.rockets.length; i++) {
+                this.rockets[i].update();
             }
             this.checkHealth();
             this.magazineText.text = this.player.magazine + " bullets";

@@ -32,6 +32,9 @@ class Tutorial extends Phaser.Scene {
         this.tutorial_music.play();
         this.tutorial_music.loop = true;
 
+        // SFX
+        this.damageFX = this.sound.add('Take_Damage', {volume: 0.80});
+
         // base settings for this scene
         gameOver = false;
         this.length = 55*64;
@@ -114,6 +117,7 @@ class Tutorial extends Phaser.Scene {
             this.player.hitted = true;
             this.player.shadow = true;
             this.looseHealth();
+            this.damageFX.play();
                 this.timedEvent = this.time.addEvent({
                     delay: 700,
                     callback: ()=>{
@@ -167,6 +171,7 @@ class Tutorial extends Phaser.Scene {
             this.overlap2.active = false;
             this.player.hitted = true;
             this.looseHealth();
+            this.damageFX.play();
             this.player.shadow = true;
                 this.timedEvent = this.time.addEvent({
                     delay: 700,
@@ -192,6 +197,7 @@ class Tutorial extends Phaser.Scene {
             this.collider.active = false;
             this.player.hitted = true;
             this.looseHealth();
+            this.damageFX.play();
             this.player.shadow = true;
                 this.timedEvent = this.time.addEvent({
                     delay: 700,

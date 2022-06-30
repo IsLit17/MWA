@@ -5,7 +5,6 @@ class World3 extends Phaser.Scene {
 
     preload() {
         // load audio
-        this.load.audio('Jump_noise', './assets/Jump.wav');
         this.load.audio('Game_over', './assets/Game_Over.wav');
         this.load.audio('Low_C_Chord', './assets/Low_C_Chord.wav');
         this.load.audio('World_3', './assets/World_3.wav');
