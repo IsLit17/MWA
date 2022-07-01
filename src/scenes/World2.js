@@ -136,9 +136,9 @@ class World2 extends Phaser.Scene {
                     callback: ()=>{
                         this.player.alpha = 1;
                         this.player.hitted = false;
-                        this.collider.active = false;
-                        this.overlap.active = false;
-                        this.overlap2.active = false;
+                        this.collider.active = true;
+                        this.overlap.active = true;
+                        this.overlap2.active = true;
                     },
                     loop: false
                 })
