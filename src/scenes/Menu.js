@@ -40,6 +40,8 @@ class Menu extends Phaser.Scene {
         this.load.spritesheet('enemy5', './assets/yellowDrone.png', {frameWidth: 108, frameHeight: 88, startFrame: 0, endFrame: 4});
 
         this.load.image('title', './assets/Title.png');
+        this.load.image('stars', './assets/stars.png');
+
     }
 
     create() {
@@ -145,6 +147,7 @@ class Menu extends Phaser.Scene {
         });
 
     // show menu text
+    this.starfield = this.add.tileSprite(0, 0, 800, 640, 'stars').setOrigin(0, 0);
     this.add.image(0,0, 'title', 0).setOrigin(0,0);
     // define keys
     keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -155,6 +158,7 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
+        this.starfield.tilePositionX -= 1;
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.menu_music.stop();
             this.scene.start('instructionsScene');
