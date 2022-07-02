@@ -70,7 +70,7 @@ class World2 extends Phaser.Scene {
         let bushObj = map.filterObjects("Bush", obj => obj.name === "");
         let index_bush = 0;
         bushObj.map((element) => {
-            this.bushes[index_bush] = new Backdrop(this, element.x, element.y, 'bush', 0, 5, element.x).setOrigin(0,0);
+            this.bushes[index_bush] = new Backdrop(this, element.x, element.y + 96, 'bush', 0, 5, element.x).setOrigin(0,0);
             index_bush += 1;
         });
 

@@ -71,7 +71,7 @@ class World3 extends Phaser.Scene {
         let fireObj = map.filterObjects("Fireball", obj => obj.name === "");
         let index_fire = 0;
         fireObj.map((element) => {
-            this.fireballs[index_fire] = new Backdrop(this, element.x, element.y, 'fireball', 0, 5, element.x).setOrigin(0,0);
+            this.fireballs[index_fire] = new Backdrop(this, element.x, element.y + 96, 'fireball', 0, 5, element.x).setOrigin(0,0);
             index_fire += 1;
         });
 

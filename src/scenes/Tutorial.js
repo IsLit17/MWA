@@ -28,7 +28,7 @@ class Tutorial extends Phaser.Scene {
 
     create() {
         // Tutorial level music
-        this.tutorial_music = this.sound.add('tutorial_music', {volume: 0.50});
+        this.tutorial_music = this.sound.add('menu_music', {volume: 0.50});
         this.tutorial_music.play();
         this.tutorial_music.loop = true;
 

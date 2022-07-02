@@ -68,7 +68,7 @@ class World1 extends Phaser.Scene {
         let rocketObj = map.filterObjects("Rocket", obj => obj.name === "");
         let index_rocket = 0;
         rocketObj.map((element) => {
-            this.rockets[index_rocket] = new Backdrop(this, element.x, element.y, 'rocket', 0, 5, element.x).setOrigin(0,0);
+            this.rockets[index_rocket] = new Backdrop(this, element.x, element.y + 96, 'rocket', 0, 5, element.x).setOrigin(0,0);
             index_rocket += 1;
         });
 
