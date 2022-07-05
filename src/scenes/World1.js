@@ -18,7 +18,7 @@ class World1 extends Phaser.Scene {
             frameHeight: 32
         });
         this.load.spritesheet("healthBar", "./assets/healthBar.png", {frameWidth: 128, frameHeight: 32, startFrame: 0, endFrame: 3});
-        this.load.spritesheet("sign", "./assets/sign.png", {frameWidth: 22, frameHeight: 32, startFrame: 0, endFrame: 3});
+        this.load.spritesheet("sign", "./assets/sign.png", {frameWidth: 40, frameHeight: 64, startFrame: 0, endFrame: 3});
 
         this.load.tilemapTiledJSON('map1', './assets/world1.json');
     }
@@ -224,7 +224,7 @@ class World1 extends Phaser.Scene {
 
         // add magazine text
         this.magazineText = this.add.text(350, 20, this.player.magazine + "bullets", ammoConfig).setScrollFactor(0);
-        this.resetText = this.add.text(20, 20, 'Press (P) to Pause', ammoConfig).setScrollFactor(0);
+        this.resetText = this.add.text(20, 20, 'Press (P) to Restart', ammoConfig).setScrollFactor(0);
         this.gameoverText = this.add.text(350, 300, "GAME OVER", scoreConfig).setScrollFactor(0).setVisible(false);
         this.gameoverText2 = this.add.text(120, 350, 'Press (P) to Restart or (M) to return', scoreConfig).setScrollFactor(0).setVisible(false);
 
