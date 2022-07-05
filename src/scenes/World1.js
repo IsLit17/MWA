@@ -6,8 +6,7 @@ class World1 extends Phaser.Scene {
     preload() {
         // load audio
         this.load.audio('Game_over', './assets/Game_Over.wav');
-        //this.load.audio('Low_C_Chord', './assets/Low_C_Chord.wav');
-        this.load.audio('World_1', './assets/World_1.wav');
+        this.load.audio('World_1', './assets/World_1.m4a');
         this.load.audio('Take_Damage', './assets/Damage.wav');
 
 
@@ -19,13 +18,14 @@ class World1 extends Phaser.Scene {
             frameHeight: 32
         });
         this.load.spritesheet("healthBar", "./assets/healthBar.png", {frameWidth: 128, frameHeight: 32, startFrame: 0, endFrame: 3});
+        this.load.spritesheet("sign", "./assets/sign.png", {frameWidth: 22, frameHeight: 32, startFrame: 0, endFrame: 3});
 
         this.load.tilemapTiledJSON('map1', './assets/world1.json');
     }
 
     create() {
         // World 1 Music
-        this.World_1_music = this.sound.add('World_1', {volume: 0.50});
+        this.World_1_music = this.sound.add('World_1', {volume: 0.20});
         this.World_1_music.play();
         this.World_1_music.loop = true;
 
@@ -254,6 +254,27 @@ class World1 extends Phaser.Scene {
                     loop: false
                 })
         });
+
+        // UI element (sign)
+        this.anims.create({
+            key: 'sign',
+            frames: this.anims.generateFrameNumbers('sign', { 
+                start: 0, 
+                end: 3, 
+                first: 0
+            }),
+            frameRate: 5,
+            repeat: -1,
+        });
+        this.signs = []
+        let signObjects = map.filterObjects("Items", obj => obj.name === "sign");
+        let sign_index = 0;
+        signObjects.map((element) => {
+            this.signs[sign_index] = this.add.sprite(element.x + 20, element.y +96, 'sign',0);
+            this.signs[sign_index].play('sign');
+            sign_index += 1;
+        });
+
     }
  
     update() {

@@ -934,8 +934,20 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":2124,
-                 "y":272
+                 "x":1442.66666666667,
+                 "y":606.666666666667
+                }, 
+                {
+                 "gid":5,
+                 "height":32,
+                 "id":84,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2152,
+                 "y":278.666666666667
                 }, 
                 {
                  "gid":6,
@@ -1066,8 +1078,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1928,
-                 "y":268
+                 "x":1869.33333333333,
+                 "y":284
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1089,8 +1101,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1355.5,
-                 "y":635
+                 "x":2007.5,
+                 "y":281.666666666667
                 }, 
                 {
                  "gid":6,
@@ -1115,6 +1127,54 @@
                  "width":32,
                  "x":2878,
                  "y":2248
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":80,
+                 "name":"sign",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1314,
+                 "y":2849
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":81,
+                 "name":"sign",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1465.56060606061,
+                 "y":2180.78787878788
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":82,
+                 "name":"sign",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1800.72727272727,
+                 "y":1765.95454545455
+                }, 
+                {
+                 "gid":6,
+                 "height":32,
+                 "id":83,
+                 "name":"sign",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":922.227272727273,
+                 "y":834.454545454546
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1123,7 +1183,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":80,
+ "nextobjectid":85,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",
