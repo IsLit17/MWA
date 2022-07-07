@@ -28,7 +28,7 @@ class Tutorial extends Phaser.Scene {
 
     create() {
         // Tutorial level music
-        this.tutorial_music = this.sound.add('menu_music', {volume: 0.50});
+        this.tutorial_music = this.sound.add('menu_music', {volume: 0.20});
         this.tutorial_music.play();
         this.tutorial_music.loop = true;
 
@@ -230,7 +230,7 @@ class Tutorial extends Phaser.Scene {
             }
             this.physics.pause();
             this.add.text(this.cameras.main.worldView.x + this.cameras.main.worldView.width/2, this.cameras.main.worldView.y + this.cameras.main.worldView.height/2, 'Game Over', scoreConfig).setOrigin(0.5);
-            this.add.text(this.cameras.main.worldView.x + this.cameras.main.worldView.width/2, this.cameras.main.worldView.y + this.cameras.main.worldView.height/2 + 32, 'Press (P) to Restart or ← to return to menu', scoreConfig).setOrigin(0.5);
+            this.add.text(this.cameras.main.worldView.x + this.cameras.main.worldView.width/2, this.cameras.main.worldView.y + this.cameras.main.worldView.height/2 + 32, 'Press (P) to Restart or (M) to return to menu', scoreConfig).setOrigin(0.5);
             if (Phaser.Input.Keyboard.JustDown(keyP)) {
                 this.tutorial_music.stop();
                 this.Game_over.stop();
