@@ -13,6 +13,7 @@ class World1 extends Phaser.Scene {
         // load images, spritesheets, and tilemaps
         this.load.image('tiles1', './assets/tilesheet1.png');
         this.load.image('rocket', './assets/rocket.png');
+        this.load.image('sky', './assets/tokyoNight.png');
         this.load.spritesheet("tile1_sheet", "./assets/tilesheet1.png", {
             frameWidth: 32,
             frameHeight: 32
@@ -61,7 +62,9 @@ class World1 extends Phaser.Scene {
         // map
         const map = this.make.tilemap({ key: 'map1' });
         const tileSet = map.addTilesetImage('tile_sheet_1', 'tiles1');
-        const backgroundLayer = map.createLayer("Background", tileSet, 0, 96).setScrollFactor(0.25); // background layer
+
+        // add background night
+        this.starfield = this.add.tileSprite(400, 300, 800, 640, 'sky').setScrollFactor(0);
 
         // add background rockets
         this.rockets = [];
@@ -98,10 +101,31 @@ class World1 extends Phaser.Scene {
         const viewH = 640;
         const viewW = 800;
         this.cameras.main.setBounds(0,0,map.widthInPixels, map.heightInPixels + 96);
+        this.cameras.main.setBackgroundColor('#000000');
         this.cameras.main.startFollow(this.player);
 
         // collision with platforms
         this.physics.add.collider(this.player, this.platforms);
+
+        // UI element (sign)
+        this.anims.create({
+            key: 'sign',
+            frames: this.anims.generateFrameNumbers('sign', { 
+                start: 0, 
+                end: 3, 
+                first: 0
+            }),
+            frameRate: 5,
+            repeat: -1,
+        });
+        this.signs = []
+        let signObjects = map.filterObjects("Items", obj => obj.name === "sign");
+        let sign_index = 0;
+        signObjects.map((element) => {
+            this.signs[sign_index] = this.add.sprite(element.x + 20, element.y +96, 'sign',0);
+            this.signs[sign_index].play('sign');
+            sign_index += 1;
+        });
 
         //healthBar
         this.healthBar = this.add.image(710, 30, 'healthBar', 3).setScrollFactor(0);
@@ -255,30 +279,11 @@ class World1 extends Phaser.Scene {
                 })
         });
 
-        // UI element (sign)
-        this.anims.create({
-            key: 'sign',
-            frames: this.anims.generateFrameNumbers('sign', { 
-                start: 0, 
-                end: 3, 
-                first: 0
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
-        this.signs = []
-        let signObjects = map.filterObjects("Items", obj => obj.name === "sign");
-        let sign_index = 0;
-        signObjects.map((element) => {
-            this.signs[sign_index] = this.add.sprite(element.x + 20, element.y +96, 'sign',0);
-            this.signs[sign_index].play('sign');
-            sign_index += 1;
-        });
-
     }
  
     update() {
         if (!gameOver) {
+            this.starfield.tilePositionX -= 1;
             this.player.update(this.enemies, this.platforms);
             this.UI.update(this.player);
             for (let i = 0; i < this.enemy.length; i++) {
