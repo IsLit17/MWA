@@ -119,7 +119,7 @@
          "name":"Fireball",
          "objects":[
                 {
-                 "gid":5,
+                 "gid":6,
                  "height":32,
                  "id":57,
                  "name":"",
@@ -127,11 +127,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3168,
-                 "y":449.5
+                 "x":3166,
+                 "y":2816
                 }, 
                 {
-                 "gid":5,
+                 "gid":6,
                  "height":32,
                  "id":58,
                  "name":"",
@@ -140,10 +140,10 @@
                  "visible":true,
                  "width":32,
                  "x":3168,
-                 "y":992.333333333333
+                 "y":2240
                 }, 
                 {
-                 "gid":5,
+                 "gid":6,
                  "height":32,
                  "id":59,
                  "name":"",
@@ -151,11 +151,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3167.81818181818,
-                 "y":1858.18181818182
+                 "x":3168,
+                 "y":1666
                 }, 
                 {
-                 "gid":5,
+                 "gid":6,
                  "height":32,
                  "id":60,
                  "name":"",
@@ -163,11 +163,11 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3167.75,
-                 "y":2367.75
+                 "x":3168.5,
+                 "y":1023.5
                 }, 
                 {
-                 "gid":5,
+                 "gid":6,
                  "height":32,
                  "id":61,
                  "name":"",
@@ -175,8 +175,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3168,
-                 "y":2880
+                 "x":3169,
+                 "y":449
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1108,7 +1108,7 @@
         {
          "columns":7,
          "firstgid":1,
-         "image":"..\/..\/FinalGame\/assets\/tilesheet3.png",
+         "image":"tilesheet3.png",
          "imageheight":96,
          "imagewidth":224,
          "margin":0,

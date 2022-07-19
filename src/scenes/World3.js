@@ -66,7 +66,7 @@ class World3 extends Phaser.Scene {
         const tileSet = map.addTilesetImage('tile_sheet_3', 'tiles3');
         const backgroundLayer = map.createLayer("Background", tileSet, 0, 96).setScrollFactor(0.25); // background layer
 
-        // add background bushes
+        // add background fireballs
         this.fireballs = [];
         let fireObj = map.filterObjects("Fireball", obj => obj.name === "");
         let index_fire = 0;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="57">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="62">
  <editorsettings>
   <export target="world3.json" format="json"/>
  </editorsettings>
@@ -110,6 +110,13 @@
 20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20
 </data>
  </layer>
+ <objectgroup id="8" name="Fireball">
+  <object id="57" gid="6" x="3166" y="2816" width="32" height="32"/>
+  <object id="58" gid="6" x="3168" y="2240" width="32" height="32"/>
+  <object id="59" gid="6" x="3168" y="1666" width="32" height="32"/>
+  <object id="60" gid="6" x="3168.5" y="1023.5" width="32" height="32"/>
+  <object id="61" gid="6" x="3169" y="449" width="32" height="32"/>
+ </objectgroup>
  <layer id="4" name="Ground" width="100" height="100">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
