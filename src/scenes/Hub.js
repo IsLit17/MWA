@@ -9,6 +9,7 @@ class Hub extends Phaser.Scene {
         this.load.audio('Game_over', './assets/Game_Over.wav');
         this.load.audio('Hub_World', './assets/Hub_World.wav');
         this.load.audio('gunshot', './assets/gunshot.wav');
+        this.load.image('sky', './assets/tokyoNight.png');
 
 
         // load images, spritesheets, and tilemaps
@@ -17,12 +18,6 @@ class Hub extends Phaser.Scene {
     }
 
     create() {
-        // Hub World music
-
-        this.hub_music = this.sound.add('Hub_World', {volume: 0.50});
-        this.hub_music.play();
-        this.hub_music.loop = true;
-
         // base settings for this scene
         gameOver = false;
         this.length = 40*32;
@@ -48,14 +43,13 @@ class Hub extends Phaser.Scene {
         this.add.text(84, 84, 'Press M for Menu', clearConfig).setScrollFactor(0);
         this.gameclear = this.add.text(360, 520, "Thanks for playing!", clearConfig).setScale(2).setScrollFactor(0.5).setVisible(false);
         this.gameclear2 = this.add.text(84, 104, "Press (R) to reset", clearConfig).setScale(1).setScrollFactor(0).setVisible(false);
-        
 
+        // stars
+        this.starfield = this.add.tileSprite(400, 300, 800, 640, 'sky').setScrollFactor(0);
 
         // map
         const map = this.make.tilemap({ key: 'mapH' });
         const tileSet = map.addTilesetImage('tile_sheet_0', 'tilesH');
-        const backgroundLayer = map.createLayer("Background", tileSet, 0, 96).setScrollFactor(0.25); // background layer
-        const groundLayer = map.createLayer("Ground", tileSet, 0, 96); // background layer
         const platforms = map.createLayer('Platforms', tileSet, 0, 96);
         platforms.setCollisionByExclusion(-1, true);
 
@@ -70,7 +64,7 @@ class Hub extends Phaser.Scene {
         this.cam = this.cameras.main.setViewport(0, 0, viewW, viewH).setZoom(1);
         this.cam.setBounds(0,0,map.widthInPixels, map.heightInPixels + 96);
         this.cam.startFollow(this.player);
-        this.cam.setBackgroundColor('#cfd8dc');
+        this.cam.setBackgroundColor('#000000');
 
         // collision
         this.physics.add.collider(this.player, platforms);
@@ -93,25 +87,23 @@ class Hub extends Phaser.Scene {
         this.portal3.play('portal');
         this.portal1Collides = this.physics.add.collider(this.player, this.portal, (obj1, obj2) => {
             this.scene.start(obj2.destination);
-            this.hub_music.stop();
         }, null, this);
         
         this.portal2Collides = this.physics.add.collider(this.player, this.portal2, (obj1, obj2) => {
             this.scene.start(obj2.destination);
-            this.hub_music.stop();
         }, null, this);
         this.portal2Collides.active = false;
         this.portal2.visible = false;
 
         this.portal3Collides = this.physics.add.collider(this.player, this.portal3, (obj1, obj2) => {
             this.scene.start(obj2.destination);
-            this.hub_music.stop();
         }, null, this);
          this.portal3Collides.active = false;
          this.portal3.visible = false;
     }
 
     update() {
+        this.starfield.tilePositionX -= 1;
         if (completed[0] == 1) {
             this.portal2Collides.active = true;
             this.portal2.visible = true;
@@ -127,7 +119,6 @@ class Hub extends Phaser.Scene {
         }
 
         if (Phaser.Input.Keyboard.JustDown(keyM)) {
-            this.hub_music.stop();
             this.scene.start('menuScene');
         }
 
